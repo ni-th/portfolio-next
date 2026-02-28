@@ -15,19 +15,19 @@ import {
 interface InfoItem {
   icon: React.ElementType
   label: string
-  value: string
+  description: string | string[],
+  content: string | string[]
 }
 
 const AboutSection = forwardRef<HTMLElement>((props, ref) => {
   const personalInfo: InfoItem[] = [
-    { icon: Calendar, label: "Age", value: "28 years" },
-    { icon: MapPin, label: "Location", value: "New York, USA" },
-    { icon: Briefcase, label: "Experience", value: "6+ years" },
-    { icon: GraduationCap, label: "Education", value: "M.S. Computer Science" },
+    { icon: MapPin, label: "Location", description: "Kurunegala, Sri Lanka" , content: "Based in Kurunegala, Sri Lanka" },
+    { icon: Briefcase, label: "Experience", description: "1+ years" , content: "1+ years of professional experience in software development" },
+    { icon: GraduationCap, label: "Education", description: ["BSc in Physical Science", "Dipoloma in Software Engineering"] , content: ["BSc in Physical Science at University of Colombo", "Dipoloma in Software Engineering at iCET"] },
   ]
 
   const interests: string[] = [
-    "Open Source", "AI/ML", "Web3", "Cloud Computing",
+    "Open Source", "AI/ML", "Animated Web Apps", "Cloud Computing",
     "UI/UX Design", "Mobile Development", "DevOps", "Tech Writing",
   ]
 
@@ -72,41 +72,28 @@ const AboutSection = forwardRef<HTMLElement>((props, ref) => {
             {personalInfo.map((item, index) => {
               const Icon = item.icon
               return (
-                <div
-                  key={index}
-                  className="flex items-start gap-4 p-4 rounded-xl border bg-background/50 backdrop-blur-sm"
-                >
-                  <Icon className="w-6 h-6 text-primary mt-1" />
-                  <div>
-                    <p className="text-sm text-muted-foreground">
-                      {item.label}
-                    </p>
-                    <p className="font-semibold">
-                      {item.value}
-                    </p>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {personalInfo.map((item, index) => {
-              const Icon = item.icon
-              return (
                 <Card key={index}>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Icon className="w-4 h-4 text-primary" />
                       {item.label}
                     </CardTitle>
-                    <CardDescription>{item.value}</CardDescription>
+                    <CardDescription>
+                      {Array.isArray(item.description) ? item.description.join(", ") : item.description}
+                    </CardDescription>
                   </CardHeader>
+                  
                   <CardContent>
-                    <p>Card Content</p>
+                    {Array.isArray(item.content) ? (
+                      <ul className="list-disc pl-5 space-y-1">
+                        {item.content.map((line, i) => (
+                          <li key={i}>{line}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p>{item.content}</p>
+                    )}
                   </CardContent>
-                  <CardFooter>
-                    <p>Card Footer</p>
-                  </CardFooter>
                 </Card>
               )
             })}
