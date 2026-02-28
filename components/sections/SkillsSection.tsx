@@ -92,11 +92,12 @@ const SkillsSection = forwardRef<HTMLElement>((props, ref) => {
     <section 
       ref={ref} 
       id="skills" 
-      className="relative min-h-screen py-20 bg-linear-to-b from-transparent to-gray-900/5"
+      className="relative min-h-screen py-20 bg-transparent overflow-hidden"
     >
       <div className="absolute inset-0 w-full h-full">
         <TopographyBackground 
           className="absolute inset-0 w-full h-full"
+          backgroundColor="oklch(0.145 0 0)"
         />
       </div>
       <div className="relative container mx-auto px-6 flex flex-col items-center">
