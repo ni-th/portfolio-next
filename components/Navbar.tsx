@@ -5,7 +5,6 @@ import { useState, useEffect, memo, useCallback, useMemo, useRef } from "react";
 import { SectionId } from "@/app/page";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
-import Shuffle from "./ui/shuffle";
 
 interface NavbarProps {
   onNavClick: (sectionId: SectionId) => void;
@@ -70,19 +69,10 @@ const Navbar: React.FC<NavbarProps> = memo(({ onNavClick, activeSection, isScrol
             {/* Logo with enhanced styling */}
             <button 
               onClick={() => handleNavClick('home')}
-              className="relative group"
+              className="relative group text-white font-bold text-lg sm:text-2xl tracking-wide focus:outline-none"
               aria-label="Go to home"
             >
-              
-              <Shuffle 
-                text="NITH" 
-                tag="span" 
-                className="text-2xl sm:text-3xl font-black text-white"
-                triggerOnHover={true}
-                duration={0.3}
-                shuffleTimes={3}
-                scrambleCharset="!@#$%&*"
-              />
+              NITH
             </button>
 
             {/* Desktop Navigation - Centered */}
@@ -105,14 +95,14 @@ const Navbar: React.FC<NavbarProps> = memo(({ onNavClick, activeSection, isScrol
                   {/* Hover background effect */}
                   <span className={cn(
                     "absolute inset-0 rounded-lg transition-all duration-300",
-                    "bg-gradient-to-r from-blue-600/20 to-purple-600/20",
+                    "bg-linear-to-r from-blue-600/20 to-purple-600/20",
                     "opacity-0 group-hover:opacity-100",
                     activeSection === item.sectionId && "opacity-100"
                   )} />
                   
                   {/* Active indicator */}
                   {activeSection === item.sectionId && (
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-0.5 bg-linear-to-r from-blue-500 to-purple-500 rounded-full" />
                   )}
                 </button>
               ))}
@@ -132,7 +122,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onNavClick, activeSection, isScrol
                   className={cn(
                     "rounded-full transition-all duration-300",
                     "text-gray-300 hover:text-white",
-                    "hover:bg-gradient-to-r hover:from-blue-600/20 hover:to-purple-600/20",
+                    "hover:bg-linear-to-r hover:from-blue-600/20 hover:to-purple-600/20",
                     "hover:scale-110"
                   )}
                   aria-label={social.label}
@@ -151,7 +141,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onNavClick, activeSection, isScrol
               className="md:hidden relative w-10 h-10 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-all duration-300 group"
               aria-label="Toggle menu"
             >
-              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-20 transition-opacity" />
+              <div className="absolute inset-0 rounded-lg bg-linear-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-20 transition-opacity" />
               {isMobileMenuOpen ? 
                 <X className="w-5 h-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white" /> : 
                 <Menu className="w-5 h-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white" />
@@ -191,7 +181,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onNavClick, activeSection, isScrol
                 "border border-gray-800 overflow-hidden",
                 "transition-all duration-300",
                 activeSection === item.sectionId
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
+                  ? 'bg-linear-to-r from-blue-600 to-purple-600 text-white'
                   : 'text-gray-300 hover:text-white'
               )}>
                 <span className="relative z-10 text-xl font-bold tracking-wider">
@@ -200,7 +190,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onNavClick, activeSection, isScrol
                 
                 {/* Hover effect */}
                 <span className={cn(
-                  "absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600",
+                  "absolute inset-0 bg-linear-to-r from-blue-600 to-purple-600",
                   "transition-transform duration-300",
                   activeSection === item.sectionId
                     ? "translate-x-0"
