@@ -1,6 +1,6 @@
 'use client';
 
-import { Menu, X, Github, Linkedin, Mail } from "lucide-react";
+import { Menu, X, Github, Linkedin, Mail, Phone } from "lucide-react";
 import { useState, useEffect, memo, useCallback, useMemo, useRef } from "react";
 import { SectionId } from "@/app/page";
 import { Button } from "./ui/button";
@@ -31,6 +31,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onNavClick, activeSection, isScrol
     { name: "About", sectionId: "about" },
     { name: "Skills", sectionId: "skills" },
     { name: "Projects", sectionId: "projects" },
+    { name: "Contact", sectionId: "contact" }, 
   ], []);
 
   const handleNavClick = useCallback((sectionId: SectionId) => {
@@ -111,9 +112,10 @@ const Navbar: React.FC<NavbarProps> = memo(({ onNavClick, activeSection, isScrol
             {/* Social Icons - Desktop */}
             <div className="hidden md:flex items-center gap-2">
               {[
-                { icon: Github, href: "https://github.com", label: "GitHub" },
-                { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-                { icon: Mail, href: "mailto:email@example.com", label: "Email" },
+                { icon: Github, href: "https://github.com/ni-th", label: "GitHub" },
+                { icon: Linkedin, href: "https://linkedin.com/in/nimantha-thennakoon", label: "LinkedIn" },
+                { icon: Mail, href: "mailto:nimantha.bt@gmail.com", label: "Email" },
+                { icon: Phone, href: "tel:+94766487463", label: "Phone" }, // Added Phone contact
               ].map((social, index) => (
                 <Button
                   key={index}
@@ -209,9 +211,10 @@ const Navbar: React.FC<NavbarProps> = memo(({ onNavClick, activeSection, isScrol
               : "translate-y-8 opacity-0"
           )}>
             {[
-              { icon: Github, href: "https://github.com", label: "GitHub" },
-              { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-              { icon: Mail, href: "mailto:email@example.com", label: "Email" },
+              { icon: Github, href: "https://github.com/ni-th", label: "GitHub" },
+              { icon: Linkedin, href: "https://linkedin.com/in/nimantha-thennakoon", label: "LinkedIn" },
+              { icon: Mail, href: "mailto:nimantha.bt@gmail.com", label: "Email" },
+              { icon: Phone, href: "tel:+94766487463", label: "Phone" }, // Added Phone contact for mobile
             ].map((social, index) => (
               <Button
                 key={index}

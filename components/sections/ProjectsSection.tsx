@@ -3,6 +3,7 @@ import { Github, ExternalLink, ChevronRight, Filter, X } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card';
+import { Particles } from '../ui/particles';
 
 interface Project {
   id: number;
@@ -24,7 +25,17 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
 
   const projects: Project[] = [
     {
-      id: 1,
+      id: 13,
+      title: 'Restaurant Management System',
+      description: 'Full-stack system with real-time order tracking for restaurants.',
+      longDescription: 'Developed during internship at NEXOVA. Features WebSocket-based real-time order synchronization between cashier, kitchen, and tables. Implemented Role-Based Access Control (RBAC) for different user roles.',
+      image: '/images/no-image.png',
+      tags: ['React', 'TypeScript', 'Spring Boot', 'WebSocket', 'MySQL', 'RBAC', 'Tailwind CSS'],
+      category: 'fullstack',
+      featured: true
+    },
+    {
+      id: 2,
       title: 'Clothify Store – POS System',
       description: 'Desktop-based Point of Sale system for clothing store management.',
       longDescription: 'Developed a comprehensive POS system using JavaFX with Hibernate ORM. Implemented Factory Design Pattern and Layered Architecture for modularity. Features include inventory management, sales tracking, and reporting.',
@@ -35,23 +46,12 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
       featured: true
     },
     {
-      id: 2,
+      id: 3,
       title: 'Past Paper Website',
       description: 'Dynamic web platform for uploading and downloading university past papers.',
       longDescription: 'Built a full-featured platform with admin panel for paper management, user authentication, and real-time updates using AJAX. Features include paper categorization, uploading, search functionality, downloading, and user management.',
       image: '/images/no-image.png',
       tags: ['PHP', 'MySQL', 'AJAX', 'Bootstrap', 'Semantic UI'],
-      category: 'fullstack',
-      github: 'https://github.com/ni-th/paper-site',
-      featured: true
-    },
-    {
-      id: 3,
-      title: 'Restaurant Management System',
-      description: 'Full-stack system with real-time order tracking for restaurants.',
-      longDescription: 'Developed during internship at NEXOVA. Features WebSocket-based real-time order synchronization between cashier, kitchen, and tables. Implemented Role-Based Access Control (RBAC) for different user roles.',
-      image: '/images/no-image.png',
-      tags: ['React', 'TypeScript', 'Spring Boot', 'WebSocket', 'MySQL', 'RBAC', 'Tailwind CSS'],
       category: 'fullstack',
       featured: true
     },
@@ -81,12 +81,10 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
     {
       id: 6,
       title: 'Codeverse - Coding tutorial website',
-      description: 'Full-featured e-commerce platform with real-time inventory.',
+      description: 'A web platform for coding tutorials and practice problems.',
       image: '/images/no-image.png',
       tags: ['PHP', 'MySQL', 'Bootstrap'],
       category: 'fullstack',
-      github: 'https://github.com/ni-th/codeverse',
-      live: 'https://ni-th.github.io/codeverse/',
       featured: false
     }
   ];
@@ -112,12 +110,30 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
     <section 
       ref={ref} 
       id="projects"
-      className="min-h-screen py-20 bg-gradient-to-b from-transparent to-gray-900/5"
+      className="relative min-h-screen py-20 overflow-hidden"
     >
-      <div className="container mx-auto px-6">
+      {/* Particles Background - Full section */}
+      <div className="absolute inset-0 w-full h-full">
+        <Particles 
+          className="absolute inset-0 w-full h-full"
+          quantity={150}
+          staticity={30}
+          ease={70}
+          color="#3b82f6"
+          size={0.6}
+          vx={0.1}
+          vy={0.1}
+          refresh={false}
+        />
+      </div>
+
+      {/* Content with relative z-index to appear above particles */}
+      <div className="relative z-10 container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Projects</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+            Projects
+          </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
             Here are some of my recent projects. Each project represents unique challenges 
             and solutions I've implemented.
@@ -133,9 +149,9 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
                 setFilter(cat.id);
                 setVisibleProjects(6);
               }}
-              className={`px-6 py-2 rounded-full transition-all ${
+              className={`px-6 py-2 rounded-full transition-all backdrop-blur-sm ${
                 filter === cat.id
-                  ? 'bg-linear-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
                   : 'bg-primary/10 text-muted-foreground hover:bg-primary/20 border border-primary/20'
               }`}
             >
@@ -156,11 +172,11 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  className="p-1 rounded-2xl w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 {project.featured && (
                   <Badge 
-                    className="absolute top-4 right-4 bg-linear-to-r from-blue-600 to-purple-600 text-white border-0"
+                    className="absolute top-4 right-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white border-0"
                   >
                     Featured
                   </Badge>
@@ -228,7 +244,7 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
               <CardFooter>
                 <Button 
                   variant="ghost" 
-                  className="text-primary hover:text-primary hover:bg-primary/10 p-0 h-auto"
+                  className="text-primary hover:text-primary hover:bg-primary/10 hover:cursor-pointer p-0 h-auto"
                   onClick={() => setSelectedProject(project)}
                 >
                   View Details <ChevronRight className="w-4 h-4 ml-1" />
@@ -242,7 +258,7 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
         {visibleProjects < filteredProjects.length && (
           <div className="text-center mt-12">
             <Button 
-              className="bg-linear-to-r from-blue-600 to-purple-600 text-white hover:opacity-90 transition-opacity px-8"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:opacity-90 transition-opacity px-8"
               onClick={loadMore}
             >
               Load More Projects
@@ -316,7 +332,7 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
               )}
               {selectedProject.live && (
                 <Button 
-                  className="bg-linear-to-r from-blue-600 to-purple-600 text-white"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white"
                   asChild
                 >
                   <a href={selectedProject.live} target="_blank" rel="noopener noreferrer">

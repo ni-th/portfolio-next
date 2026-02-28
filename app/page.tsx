@@ -7,6 +7,7 @@ import AboutSection from '@/components/sections/AboutSection';
 import SkillsSection from '@/components/sections/SkillsSection';
 import ProjectsSection from '@/components/sections/ProjectsSection';
 import Footer from '@/components/ui/Footer';
+import ContactSection from '@/components/sections/ContactSection';
 
 // Define section IDs
 export type SectionId = 'home' | 'about' | 'skills' | 'projects';
@@ -17,6 +18,7 @@ interface SectionRefs {
   about: RefObject<HTMLElement | null>;
   skills: RefObject<HTMLElement | null>;
   projects: RefObject<HTMLElement | null>;
+  contact: RefObject<HTMLElement | null>;
 }
 
 export default function Home() {
@@ -27,7 +29,8 @@ export default function Home() {
     home: useRef<HTMLElement>(null),
     about: useRef<HTMLElement>(null),
     skills: useRef<HTMLElement>(null),
-    projects: useRef<HTMLElement>(null)
+    projects: useRef<HTMLElement>(null),
+    contact: useRef<HTMLElement>(null),
   };
 
   // Scroll handler for navbar background
@@ -135,6 +138,7 @@ export default function Home() {
         <AboutSection ref={sectionRefs.about} />
         <SkillsSection ref={sectionRefs.skills} />
         <ProjectsSection ref={sectionRefs.projects} />
+        <ContactSection ref={sectionRefs.contact} />
       </main>
 
       <Footer />

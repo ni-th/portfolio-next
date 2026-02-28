@@ -8,6 +8,7 @@ import { SiIntellijidea, SiJavascript, SiMongodb, SiMysql, SiNextdotjs, SiPostma
 import { IoLogoJavascript } from "react-icons/io"
 import { FaCss3Alt, FaGitAlt, FaGithub, FaHtml5, FaJava, FaJs, FaPython } from "react-icons/fa"
 import { VscVscode } from "react-icons/vsc"
+import { TopographyBackground } from "../ui/topography"
 
 const SkillsSection = forwardRef<HTMLElement>((props, ref) => {
   const skillCategories = [
@@ -90,9 +91,14 @@ const SkillsSection = forwardRef<HTMLElement>((props, ref) => {
     <section 
       ref={ref} 
       id="skills" 
-      className="min-h-screen py-20 bg-gradient-to-b from-transparent to-gray-900/5"
+      className="relative min-h-screen py-20 bg-linear-to-b from-transparent to-gray-900/5"
     >
-      <div className="container mx-auto px-6">
+      <div className="absolute inset-0 w-full h-full">
+        <TopographyBackground 
+          className="absolute inset-0 w-full h-full"
+        />
+      </div>
+      <div className="relative container mx-auto px-6">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Technical Skills</h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
           A comprehensive overview of my technical expertise and competencies

@@ -3,15 +3,30 @@ import { User, GraduationCap, Briefcase, Award, Calendar, MapPin } from "lucide-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "../ui/badge"
+import { Particles } from "../ui/particles"
 
 const AboutSection = forwardRef<HTMLElement>((props, ref) => {
   return (
-    <section ref={ref} id="about" className="min-h-screen py-20">
-      <div className="container mx-auto px-6">
+    <section ref={ref} id="about" className="relative min-h-screen py-20 overflow-hidden">
+      {/* Particles Background - Full section */}
+      <div className="absolute inset-0 w-full h-full">
+        <Particles 
+          className="absolute inset-0" 
+          quantity={100}
+          staticity={30}
+          ease={70}
+          color="#3b82f6"
+          size={0.5}
+          refresh={false}
+        />
+      </div>
+      
+      {/* Content with relative z-index to appear above particles */}
+      <div className="relative z-10 container mx-auto px-6">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">About Me</h2>
         
         <Tabs defaultValue="about" className="w-full">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-8">
+          <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-8 bg-background/50 backdrop-blur-sm">
             <TabsTrigger value="about">About</TabsTrigger>
             <TabsTrigger value="education">Education</TabsTrigger>
             <TabsTrigger value="experience">Experience</TabsTrigger>
@@ -21,7 +36,7 @@ const AboutSection = forwardRef<HTMLElement>((props, ref) => {
           <TabsContent value="about" className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Bio Section */}
-              <div className="space-y-4">
+              <div className="space-y-4 bg-background/30 backdrop-blur-sm p-6 rounded-lg">
                 <h3 className="text-2xl font-semibold flex items-center gap-2">
                   <User className="w-5 h-5 text-primary" />
                   Bio
@@ -44,7 +59,7 @@ const AboutSection = forwardRef<HTMLElement>((props, ref) => {
 
               {/* Quick Stats */}
               <div className="grid grid-cols-2 gap-4">
-                <Card>
+                <Card className="bg-background/30 backdrop-blur-sm border-primary/10">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-medium">Experience</CardTitle>
                   </CardHeader>
@@ -53,7 +68,7 @@ const AboutSection = forwardRef<HTMLElement>((props, ref) => {
                     <p className="text-xs text-muted-foreground">Internship at NEXOVA</p>
                   </CardContent>
                 </Card>
-                <Card>
+                <Card className="bg-background/30 backdrop-blur-sm border-primary/10">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-medium">Projects</CardTitle>
                   </CardHeader>
@@ -76,8 +91,8 @@ const AboutSection = forwardRef<HTMLElement>((props, ref) => {
               
               <div className="space-y-6">
                 {/* University of Colombo */}
-                <div className="relative pl-8 border-l-2 border-primary">
-                  <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary" />
+                <div className="relative pl-8 border-l-2 border-primary bg-background/30 backdrop-blur-sm p-4 rounded-r-lg">
+                  <div className="absolute -left-2 top-4 w-4 h-4 rounded-full bg-primary" />
                   <div className="mb-2">
                     <span className="text-sm text-primary font-semibold">2022 - 2025</span>
                   </div>
@@ -89,8 +104,8 @@ const AboutSection = forwardRef<HTMLElement>((props, ref) => {
                 </div>
 
                 {/* iCET */}
-                <div className="relative pl-8 border-l-2 border-primary">
-                  <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary" />
+                <div className="relative pl-8 border-l-2 border-primary bg-background/30 backdrop-blur-sm p-4 rounded-r-lg">
+                  <div className="absolute -left-2 top-4 w-4 h-4 rounded-full bg-primary" />
                   <div className="mb-2">
                     <span className="text-sm text-primary font-semibold">2024 - 2025</span>
                   </div>
@@ -113,14 +128,14 @@ const AboutSection = forwardRef<HTMLElement>((props, ref) => {
               </h3>
 
               {/* NEXOVA Experience */}
-              <Card className="mb-6">
+              <Card className="mb-6 bg-background/30 backdrop-blur-sm border-primary/10">
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <div>
                       <CardTitle className="text-xl">NEXOVA (PRIVATE) LIMITED</CardTitle>
                       <CardDescription>Trainee Software Developer</CardDescription>
                     </div>
-                    <Badge>Sep 2025 - Mar 2026</Badge>
+                    <Badge className="bg-primary/20 text-primary border-primary/30">Sep 2025 - Mar 2026</Badge>
                   </div>
                 </CardHeader>
                 <CardContent>

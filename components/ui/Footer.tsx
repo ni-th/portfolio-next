@@ -2,7 +2,7 @@ import { Heart } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="from-black to-purple-600 bg-linear-to-br text-white py-12">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col items-center text-center">
           {/* Logo */}
