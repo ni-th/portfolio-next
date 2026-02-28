@@ -1,7 +1,8 @@
-
 import { forwardRef, useState } from 'react';
-import { Github, ExternalLink, ChevronRight, Filter } from 'lucide-react';
+import { Github, ExternalLink, ChevronRight, Filter, X } from 'lucide-react';
 import { Button } from '../ui/button';
+import { Badge } from '../ui/badge';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card';
 
 interface Project {
   id: number;
@@ -19,94 +20,73 @@ interface Project {
 const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
   const [filter, setFilter] = useState<string>('all');
   const [visibleProjects, setVisibleProjects] = useState<number>(6);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const projects: Project[] = [
     {
       id: 1,
-      title: 'E-Commerce Platform',
-      description: 'A full-featured e-commerce platform with real-time inventory and payment processing.',
-      image: '/api/placeholder/600/400',
-      tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+      title: 'Clothify Store – POS System',
+      description: 'Desktop-based Point of Sale system for clothing store management.',
+      longDescription: 'Developed a comprehensive POS system using JavaFX with Hibernate ORM. Implemented Factory Design Pattern and Layered Architecture for modularity. Features include inventory management, sales tracking, and reporting.',
+      image: '/images/clothify.png',
+      tags: ['JavaFX', 'Hibernate', 'MySQL', 'Lombok', 'ModelMapper'],
       category: 'fullstack',
-      github: 'https://github.com',
-      live: 'https://example.com',
+      github: 'https://github.com/ni-th/clothify-store-java-fx',
       featured: true
     },
     {
       id: 2,
-      title: 'AI Task Manager',
-      description: 'Smart task management app with AI-powered prioritization and scheduling.',
-      image: '/api/placeholder/600/400',
-      tags: ['Next.js', 'TypeScript', 'OpenAI', 'Prisma'],
+      title: 'Past Paper Website',
+      description: 'Dynamic web platform for uploading and downloading university past papers.',
+      longDescription: 'Built a full-featured platform with admin panel for paper management, user authentication, and real-time updates using AJAX. Features include paper categorization, uploading, search functionality, downloading, and user management.',
+      image: '/images/no-image.png',
+      tags: ['PHP', 'MySQL', 'AJAX', 'Bootstrap', 'Semantic UI'],
       category: 'fullstack',
-      github: 'https://github.com',
-      live: 'https://example.com',
+      github: 'https://github.com/ni-th/paper-site',
       featured: true
     },
     {
       id: 3,
-      title: 'Weather Dashboard',
-      description: 'Real-time weather tracking with interactive maps and forecasts.',
-      image: '/api/placeholder/600/400',
-      tags: ['React', 'D3.js', 'Weather API', 'Tailwind'],
-      category: 'frontend',
-      github: 'https://github.com',
-      live: 'https://example.com',
-      featured: false
+      title: 'Restaurant Management System',
+      description: 'Full-stack system with real-time order tracking for restaurants.',
+      longDescription: 'Developed during internship at NEXOVA. Features WebSocket-based real-time order synchronization between cashier, kitchen, and tables. Implemented Role-Based Access Control (RBAC) for different user roles.',
+      image: '/images/no-image.png',
+      tags: ['React', 'TypeScript', 'Spring Boot', 'WebSocket', 'MySQL', 'RBAC', 'Tailwind CSS'],
+      category: 'fullstack',
+      featured: true
     },
     {
       id: 4,
-      title: 'Social Media API',
-      description: 'RESTful API for social media platform with authentication and real-time features.',
-      image: '/api/placeholder/600/400',
-      tags: ['Node.js', 'Express', 'Socket.io', 'JWT'],
-      category: 'backend',
-      github: 'https://github.com',
-      live: 'https://example.com',
+      title: 'Sinhala Unicode to FM Text Converter',
+      description: 'Real-time desktop app for converting Sinhala Unicode to FM font encodings.',
+      longDescription: 'Built with Python and Tkinter featuring live text conversion. Implements custom mapping algorithm for accurate Unicode-to-FM character translation. Tested with various Sinhala fonts for compatibility.',
+      image: '/images/rtu.png',
+      tags: ['Python', 'Tkinter', 'Unicode', 'Font Processing'],
+      category: 'frontend',
+      github: 'https://ni-th.github.io/rtu/',
+      live: 'https://ni-th.github.io/rtu/',
       featured: false
     },
     {
       id: 5,
-      title: 'Fitness Tracker Mobile App',
-      description: 'Cross-platform mobile app for tracking workouts and nutrition.',
-      image: '/api/placeholder/600/400',
-      tags: ['React Native', 'Redux', 'Firebase'],
-      category: 'mobile',
-      github: 'https://github.com',
-      live: 'https://example.com',
-      featured: true
+      title: 'Student Management System',
+      description: 'Web-based system for student registration and grade tracking.',
+      longDescription: 'Final year project for CS 3101 course. Features include student registration, class assignments, grade tracking, and user authentication. Built with modular PHP architecture for maintainability.',
+      image: '/images/no-image.png',
+      tags: ['PHP', 'MySQL', 'JavaScript', 'HTML/CSS', 'Bootstrap'],
+      category: 'fullstack',
+      github: 'https://github.com/ni-th/student-management-system',
+      featured: false
     },
     {
       id: 6,
-      title: 'Analytics Dashboard',
-      description: 'Interactive dashboard for visualizing business metrics and KPIs.',
-      image: '/api/placeholder/600/400',
-      tags: ['Vue.js', 'Chart.js', 'Django'],
-      category: 'frontend',
-      github: 'https://github.com',
-      live: 'https://example.com',
-      featured: false
-    },
-    {
-      id: 7,
-      title: 'Chat Application',
-      description: 'Real-time chat app with rooms, direct messages, and file sharing.',
-      image: '/api/placeholder/600/400',
-      tags: ['React', 'Socket.io', 'MongoDB'],
+      title: 'Codeverse - Coding tutorial website',
+      description: 'Full-featured e-commerce platform with real-time inventory.',
+      image: '/images/no-image.png',
+      tags: ['PHP', 'MySQL', 'Bootstrap'],
       category: 'fullstack',
-      github: 'https://github.com',
-      live: 'https://example.com',
-      featured: false
-    },
-    {
-      id: 8,
-      title: 'Portfolio Template',
-      description: 'Modern portfolio template for developers with smooth animations.',
-      image: '/api/placeholder/600/400',
-      tags: ['Next.js', 'Framer Motion', 'Tailwind'],
-      category: 'frontend',
-      github: 'https://github.com',
-      live: 'https://example.com',
+      github: 'https://github.com/ni-th/codeverse',
+      live: 'https://ni-th.github.io/codeverse/',
       featured: false
     }
   ];
@@ -116,7 +96,6 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
     { id: 'frontend', label: 'Frontend' },
     { id: 'backend', label: 'Backend' },
     { id: 'fullstack', label: 'Full Stack' },
-    { id: 'mobile', label: 'Mobile' },
   ];
 
   const filteredProjects = filter === 'all' 
@@ -133,14 +112,13 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
     <section 
       ref={ref} 
       id="projects"
-      className="min-h-screen py-20 bg-white"
+      className="min-h-screen py-20 bg-gradient-to-b from-transparent to-gray-900/5"
     >
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="text-blue-600 font-semibold text-lg">My Work</span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Projects</h2>
+          <p className="text-muted-foreground max-w-3xl mx-auto">
             Here are some of my recent projects. Each project represents unique challenges 
             and solutions I've implemented.
           </p>
@@ -157,8 +135,8 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
               }}
               className={`px-6 py-2 rounded-full transition-all ${
                 filter === cat.id
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-linear-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                  : 'bg-primary/10 text-muted-foreground hover:bg-primary/20 border border-primary/20'
               }`}
             >
               {cat.label}
@@ -169,32 +147,35 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {displayedProjects.map((project) => (
-            <div 
+            <Card 
               key={project.id}
-              className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+              className="group border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 bg-gray-900/50 backdrop-blur-sm overflow-hidden"
             >
               {/* Project Image */}
               <div className="relative overflow-hidden h-48">
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="p-1 rounded-2xl w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 {project.featured && (
-                  <span className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  <Badge 
+                    className="absolute top-4 right-4 bg-linear-to-r from-blue-600 to-purple-600 text-white border-0"
+                  >
                     Featured
-                  </span>
+                  </Badge>
                 )}
                 {/* Overlay with links */}
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                <div className="absolute inset-0 bg-gray-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                   {project.github && (
                     <a 
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 bg-white rounded-full hover:bg-gray-100 transition-colors"
+                      className="p-3 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors border border-primary/20"
+                      aria-label="View GitHub repository"
                     >
-                      <Github className="w-5 h-5" />
+                      <Github className="w-5 h-5 text-primary" />
                     </a>
                   )}
                   {project.live && (
@@ -202,41 +183,58 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 bg-white rounded-full hover:bg-gray-100 transition-colors"
+                      className="p-3 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors border border-primary/20"
+                      aria-label="View live demo"
                     >
-                      <ExternalLink className="w-5 h-5" />
+                      <ExternalLink className="w-5 h-5 text-primary" />
                     </a>
                   )}
                 </div>
               </div>
 
               {/* Project Info */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 group-hover:text-blue-600 transition-colors">
+              <CardHeader>
+                <CardTitle className="text-xl group-hover:text-primary transition-colors">
                   {project.title}
-                </h3>
-                <p className="text-gray-600 mb-4 text-sm">
+                </CardTitle>
+                <CardDescription className="text-muted-foreground">
                   {project.description}
-                </p>
-                
+                </CardDescription>
+              </CardHeader>
+              
+              <CardContent>
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag, idx) => (
-                    <span 
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.slice(0, 4).map((tag, idx) => (
+                    <Badge 
                       key={idx}
-                      className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs"
+                      variant="outline"
+                      className="border-primary/20 bg-primary/5 text-muted-foreground"
                     >
                       {tag}
-                    </span>
+                    </Badge>
                   ))}
+                  {project.tags.length > 4 && (
+                    <Badge 
+                      variant="outline"
+                      className="border-primary/20 bg-primary/5 text-muted-foreground"
+                    >
+                      +{project.tags.length - 4}
+                    </Badge>
+                  )}
                 </div>
+              </CardContent>
 
-                {/* View Details Button */}
-                <button className="text-blue-600 font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all">
-                  View Details <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
+              <CardFooter>
+                <Button 
+                  variant="ghost" 
+                  className="text-primary hover:text-primary hover:bg-primary/10 p-0 h-auto"
+                  onClick={() => setSelectedProject(project)}
+                >
+                  View Details <ChevronRight className="w-4 h-4 ml-1" />
+                </Button>
+              </CardFooter>
+            </Card>
           ))}
         </div>
 
@@ -244,16 +242,93 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
         {visibleProjects < filteredProjects.length && (
           <div className="text-center mt-12">
             <Button 
-              color="primary"
-              size="lg"
+              className="bg-linear-to-r from-blue-600 to-purple-600 text-white hover:opacity-90 transition-opacity px-8"
               onClick={loadMore}
-              className="px-8"
             >
               Load More Projects
             </Button>
           </div>
         )}
       </div>
+
+      {/* Project Details Modal */}
+      {selectedProject && (
+        <div 
+          className="fixed inset-0 bg-gray-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedProject(null)}
+        >
+          <Card 
+            className="max-w-2xl w-full max-h-[90vh] overflow-y-auto bg-gray-900 border border-primary/20"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <CardHeader>
+              <div className="flex justify-between items-start">
+                <CardTitle className="text-2xl text-primary">{selectedProject.title}</CardTitle>
+                <button 
+                  onClick={() => setSelectedProject(null)}
+                  className="p-1 hover:bg-primary/10 rounded-full transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <CardDescription className="text-muted-foreground">
+                {selectedProject.category.charAt(0).toUpperCase() + selectedProject.category.slice(1)} Project
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <img 
+                src={selectedProject.image} 
+                alt={selectedProject.title}
+                className="w-full h-64 object-cover rounded-lg border border-primary/10"
+              />
+              <div>
+                <h4 className="font-semibold mb-2">Description</h4>
+                <p className="text-muted-foreground">
+                  {selectedProject.longDescription || selectedProject.description}
+                </p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Technologies</h4>
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject.tags.map((tag, idx) => (
+                    <Badge 
+                      key={idx}
+                      variant="outline"
+                      className="border-primary/20 bg-primary/5"
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter className="flex gap-4">
+              {selectedProject.github && (
+                <Button 
+                  className="bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20"
+                  asChild
+                >
+                  <a href={selectedProject.github} target="_blank" rel="noopener noreferrer">
+                    <Github className="w-4 h-4 mr-2" />
+                    View Code
+                  </a>
+                </Button>
+              )}
+              {selectedProject.live && (
+                <Button 
+                  className="bg-linear-to-r from-blue-600 to-purple-600 text-white"
+                  asChild
+                >
+                  <a href={selectedProject.live} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    Live Demo
+                  </a>
+                </Button>
+              )}
+            </CardFooter>
+          </Card>
+        </div>
+      )}
     </section>
   );
 });
