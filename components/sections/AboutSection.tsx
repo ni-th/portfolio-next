@@ -26,8 +26,9 @@ const AboutSection = forwardRef<HTMLElement>((props, ref) => {
     <section 
       ref={ref} 
       id="about"
-      className="relative min-h-screen py-20 flex items-center"
-    >
+      className="relative min-h-screen py-20 flex items-center justify-center overflow-hidden"
+    > 
+      <h3 className="absolute inset-20 flex justify-center  text-3xl font-bold mb-8">About Me</h3>
       <Particles className='absolute inset-0 -z-10' />
     </section>
   );

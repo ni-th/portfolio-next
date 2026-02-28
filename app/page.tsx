@@ -104,7 +104,7 @@ export default function Home() {
     <>
       <Navbar {...navbarProps} />
       
-      <main>
+      <main className='text-white'>
         <HeroSection 
           ref={sectionRefs.home}
           onCtaClick={() => scrollToSection('projects')}
