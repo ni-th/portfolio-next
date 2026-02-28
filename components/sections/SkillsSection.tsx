@@ -9,6 +9,7 @@ import { IoLogoJavascript } from "react-icons/io"
 import { FaCss3Alt, FaGitAlt, FaGithub, FaHtml5, FaJava, FaJs, FaPython } from "react-icons/fa"
 import { VscVscode } from "react-icons/vsc"
 import { TopographyBackground } from "../ui/topography"
+import Shuffle from "../ui/shuffle"
 
 const SkillsSection = forwardRef<HTMLElement>((props, ref) => {
   const skillCategories = [
@@ -98,8 +99,12 @@ const SkillsSection = forwardRef<HTMLElement>((props, ref) => {
           className="absolute inset-0 w-full h-full"
         />
       </div>
-      <div className="relative container mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Technical Skills</h2>
+      <div className="relative container mx-auto px-6 flex flex-col items-center">
+        <Shuffle
+                text="Technical Skills"
+                tag="h2"
+                className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-purple-600"
+            />
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
           A comprehensive overview of my technical expertise and competencies
         </p>

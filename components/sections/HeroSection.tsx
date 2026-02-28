@@ -38,7 +38,7 @@ const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(({ onCtaClick }, r
                 "I build amazing web experiences",
               ]}
               as="h1"
-              className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-400 dark:text-gray-100 mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-400 dark:text-gray-100 mb-6"
               typingSpeed={100}
             />
           </div>

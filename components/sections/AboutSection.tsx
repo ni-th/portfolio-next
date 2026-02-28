@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "../ui/badge"
 import { Particles } from "../ui/particles"
+import Shuffle from "../ui/shuffle"
 
 const AboutSection = forwardRef<HTMLElement>((props, ref) => {
   return (
@@ -23,8 +24,13 @@ const AboutSection = forwardRef<HTMLElement>((props, ref) => {
       
       {/* Content with relative z-index to appear above particles */}
       <div className="relative z-10 container mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">About Me</h2>
-        
+        <div className="flex justify-center">
+          <Shuffle
+                text="About Me"
+                tag="h2"
+                className="text-3xl text-center md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-purple-600"
+            />
+        </div>
         <Tabs defaultValue="about" className="w-full">
           <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-8 bg-background/50 backdrop-blur-sm">
             <TabsTrigger value="about">About</TabsTrigger>

@@ -115,7 +115,6 @@ const Navbar: React.FC<NavbarProps> = memo(({ onNavClick, activeSection, isScrol
                 { icon: Github, href: "https://github.com/ni-th", label: "GitHub" },
                 { icon: Linkedin, href: "https://linkedin.com/in/nimantha-thennakoon", label: "LinkedIn" },
                 { icon: Mail, href: "mailto:nimantha.bt@gmail.com", label: "Email" },
-                { icon: Phone, href: "tel:+94766487463", label: "Phone" }, // Added Phone contact
               ].map((social, index) => (
                 <Button
                   key={index}
