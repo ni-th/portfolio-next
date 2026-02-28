@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
-import { Button } from "@heroui/react";
 import { Calendar, MapPin, Briefcase, GraduationCap, Heart, Code } from 'lucide-react';
+import { Button } from '../ui/button';
 
 interface InfoItem {
   icon: React.ElementType;

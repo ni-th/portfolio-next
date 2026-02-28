@@ -1,7 +1,7 @@
 
 import { forwardRef, useState } from 'react';
-import { Button } from "@heroui/react";
 import { Github, ExternalLink, ChevronRight, Filter } from 'lucide-react';
+import { Button } from '../ui/button';
 
 interface Project {
   id: number;
@@ -246,7 +246,6 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
             <Button 
               color="primary"
               size="lg"
-              variant="bordered"
               onClick={loadMore}
               className="px-8"
             >

@@ -1,13 +1,12 @@
 'use client';
 
-import { useRef, useState, useEffect, RefObject } from 'react';
+import { useRef, useState, useEffect, RefObject, useCallback, useMemo } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/sections/HeroSection';
 import AboutSection from '@/components/sections/AboutSection';
 import SkillsSection from '@/components/sections/SkillsSection';
 import ProjectsSection from '@/components/sections/ProjectsSection';
 import Footer from '@/components/ui/Footer';
-
 
 // Define section IDs
 export type SectionId = 'home' | 'about' | 'skills' | 'projects';
@@ -31,16 +30,31 @@ export default function Home() {
     projects: useRef<HTMLElement>(null)
   };
 
-  // Track scroll position for navbar transparency
+  // Optimized scroll handler with requestAnimationFrame
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    let ticking = false;
+    
+    const updateScrollState = () => {
+      setIsScrolled(prev => {
+        const newValue = window.scrollY > 50;
+        // Only update if value actually changed
+        return prev !== newValue ? newValue : prev;
+      });
+      ticking = false;
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollState);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Track active section while scrolling
+  // Track active section while scrolling with optimized observer
   useEffect(() => {
     const observerOptions: IntersectionObserverInit = {
       threshold: 0.5,
@@ -55,30 +69,40 @@ export default function Home() {
       });
     }, observerOptions);
 
-    Object.values(sectionRefs).forEach((ref) => {
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-    });
+    // Small delay to ensure refs are ready
+    const timeoutId = setTimeout(() => {
+      Object.values(sectionRefs).forEach((ref) => {
+        if (ref.current) {
+          observer.observe(ref.current);
+        }
+      });
+    }, 100);
 
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
   }, []);
 
-  const scrollToSection = (sectionId: SectionId) => {
+  // Memoize scroll function
+  const scrollToSection = useCallback((sectionId: SectionId) => {
     const ref = sectionRefs[sectionId];
     ref?.current?.scrollIntoView({ 
       behavior: 'smooth',
       block: 'start'
     });
-  };
+  }, []);
+
+  // Memoize navbar props to prevent unnecessary re-renders
+  const navbarProps = useMemo(() => ({
+    onNavClick: scrollToSection,
+    activeSection,
+    isScrolled
+  }), [activeSection, isScrolled, scrollToSection]);
 
   return (
     <>
-      <Navbar 
-        onNavClick={scrollToSection}
-        activeSection={activeSection}
-        isScrolled={isScrolled}
-      />
+      <Navbar {...navbarProps} />
       
       <main>
         <HeroSection 
