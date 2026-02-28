@@ -30,14 +30,13 @@ export default function Home() {
     projects: useRef<HTMLElement>(null)
   };
 
-  // Optimized scroll handler with requestAnimationFrame
+  // Scroll handler for navbar background
   useEffect(() => {
     let ticking = false;
     
     const updateScrollState = () => {
       setIsScrolled(prev => {
         const newValue = window.scrollY > 50;
-        // Only update if value actually changed
         return prev !== newValue ? newValue : prev;
       });
       ticking = false;
@@ -54,46 +53,70 @@ export default function Home() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Track active section while scrolling with optimized observer
+  // Manual scroll spy for active section
   useEffect(() => {
-    const observerOptions: IntersectionObserverInit = {
-      threshold: 0.5,
-      rootMargin: '-80px 0px 0px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id as SectionId);
-        }
-      });
-    }, observerOptions);
-
-    // Small delay to ensure refs are ready
-    const timeoutId = setTimeout(() => {
-      Object.values(sectionRefs).forEach((ref) => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 150; // Offset for navbar
+      
+      // Get all sections with their positions
+      const sections: { id: SectionId; top: number; bottom: number }[] = [];
+      
+      Object.entries(sectionRefs).forEach(([id, ref]) => {
         if (ref.current) {
-          observer.observe(ref.current);
+          const rect = ref.current.getBoundingClientRect();
+          const top = rect.top + window.scrollY;
+          const bottom = top + rect.height;
+          
+          sections.push({
+            id: id as SectionId,
+            top,
+            bottom
+          });
         }
       });
-    }, 100);
 
-    return () => {
-      clearTimeout(timeoutId);
-      observer.disconnect();
+      // Sort sections by their position on page
+      sections.sort((a, b) => a.top - b.top);
+
+      // Find the current section
+      for (let i = 0; i < sections.length; i++) {
+        const section = sections[i];
+        const nextSection = sections[i + 1];
+        
+        // Check if we're in this section
+        if (scrollPosition >= section.top && 
+            (i === sections.length - 1 || scrollPosition < nextSection.top)) {
+          setActiveSection(section.id);
+          break;
+        }
+      }
     };
-  }, []);
+
+    // Initial check
+    handleScroll();
+
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []); // Empty dependency array - only run once on mount
 
   // Memoize scroll function
   const scrollToSection = useCallback((sectionId: SectionId) => {
     const ref = sectionRefs[sectionId];
-    ref?.current?.scrollIntoView({ 
-      behavior: 'smooth',
-      block: 'start'
-    });
+    if (ref?.current) {
+      ref.current.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      
+      // Manually set active section after scrolling
+      setTimeout(() => {
+        setActiveSection(sectionId);
+      }, 100);
+    }
   }, []);
 
-  // Memoize navbar props to prevent unnecessary re-renders
+  // Memoize navbar props
   const navbarProps = useMemo(() => ({
     onNavClick: scrollToSection,
     activeSection,
