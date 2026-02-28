@@ -1,8 +1,13 @@
 // components/sections/SkillsSection.tsx
 import { forwardRef } from "react"
-import { Code2, Database, Wrench, BarChart, Globe, Terminal, Palette, Shield, Cpu, Layers, GitBranch, LineChart } from "lucide-react"
+import { Code2, Database, Wrench, BarChart, Globe, Terminal, Palette, Shield, Cpu, Layers, GitBranch, LineChart, Microscope } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import LogoLoop from "../ui/LogoLoop"
+import { SiIntellijidea, SiJavascript, SiMongodb, SiMysql, SiNextdotjs, SiPostman, SiReact, SiSpring, SiTailwindcss, SiTypescript } from "react-icons/si"
+import { IoLogoJavascript } from "react-icons/io"
+import { FaCss3Alt, FaGitAlt, FaGithub, FaHtml5, FaJava, FaJs, FaPython } from "react-icons/fa"
+import { VscVscode } from "react-icons/vsc"
 
 const SkillsSection = forwardRef<HTMLElement>((props, ref) => {
   const skillCategories = [
@@ -14,7 +19,7 @@ const SkillsSection = forwardRef<HTMLElement>((props, ref) => {
     {
       title: "Frontend Development",
       icon: <Globe className="w-5 h-5 text-primary" />,
-      skills: ["React.js", "Tailwind CSS", "Bootstrap", "JavaFX", "HTML/CSS"]
+      skills: ["React.js","Next.js", "Tailwind CSS", "Bootstrap", "JavaFX", "HTML/CSS"]
     },
     {
       title: "Backend Development",
@@ -48,9 +53,9 @@ const SkillsSection = forwardRef<HTMLElement>((props, ref) => {
       skills: ["Excel", "SPSS", "Minitab", "Data Analysis", "Statistical Analysis"]
     },
     {
-      title: "Other Technical Skills",
-      icon: <Cpu className="w-5 h-5 text-primary" />,
-      skills: ["Problem Solving", "Analytical Thinking", "Debugging", "Code Optimization", "Technical Documentation"]
+      title: "Learning & Research",
+      icon: <Microscope className="w-5 h-5 text-primary" />,
+      skills: ["Next.js", "Nest.js", "PostgreSQL", "TypeOrm", "GSAP", "Three.js", "Motion Framer", "Docker", "CI/CD", "Cloud Platforms (AWS)", "Microservices Architecture", "Performance Optimization", "Security Best Practices","State Management (Redux, MobX)"]
     }
   ]
 
@@ -58,6 +63,28 @@ const SkillsSection = forwardRef<HTMLElement>((props, ref) => {
     "React.js", "Spring Boot", "TypeScript", "Java", 
     "MySQL", "REST APIs", "Tailwind CSS", "Git", "RBAC"
   ]
+
+  const techLogos = [
+  { node: <SiReact />, title: "React", href: "https://react.dev" },
+  { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
+  { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+  { node: <SiJavascript   />, title: "JavaScript", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+  { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+  { node: <FaJava />, title: "Java", href: "https://www.java.com" },
+  { node: <SiMysql />, title: "MySQL", href: "https://www.mysql.com" },
+  { node: <SiSpring />, title: "Spring Boot", href: "https://spring.io/projects/spring-boot" },
+  { node: <FaPython />, title: "Python", href: "https://www.python.org" },
+  { node: <FaGitAlt   />, title: "Git", href: "https://git-scm.com" },
+  { node: <FaGithub   />, title: "Github", href: "https://github.com" },
+  { node: <FaHtml5  />, title: "HTML", href: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
+  { node: <FaCss3Alt  />, title: "CSS", href: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
+  { node: <VscVscode  />, title: "VS Code", href: "https://code.visualstudio.com" },
+  { node: <SiMongodb />, title: "MongoDB", href: "https://www.mongodb.com" },
+  { node: <SiMysql />, title: "MySQL", href: "https://www.mysql.com" },
+  { node: <SiPostman />, title: "Postman", href: "https://www.getpostman.com" },
+  { node: <SiIntellijidea />, title: "IntelliJ IDEA", href: "https://www.jetbrains.com/idea" },
+
+];
 
   return (
     <section 
@@ -115,65 +142,18 @@ const SkillsSection = forwardRef<HTMLElement>((props, ref) => {
             </Card>
           ))}
         </div>
-
-        {/* Additional Info Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
-          <Card className="border border-primary/10 bg-gradient-to-br from-blue-600/5 to-purple-600/5 hover:border-primary/30 transition-all duration-300">
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <Code2 className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold">20+</p>
-                  <p className="text-sm text-muted-foreground">Projects Completed</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border border-primary/10 bg-gradient-to-br from-blue-600/5 to-purple-600/5 hover:border-primary/30 transition-all duration-300">
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <Database className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold">5+</p>
-                  <p className="text-sm text-muted-foreground">Database Designs</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border border-primary/10 bg-gradient-to-br from-blue-600/5 to-purple-600/5 hover:border-primary/30 transition-all duration-300">
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <Shield className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold">RBAC</p>
-                  <p className="text-sm text-muted-foreground">Implemented in 3+ Projects</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border border-primary/10 bg-gradient-to-br from-blue-600/5 to-purple-600/5 hover:border-primary/30 transition-all duration-300">
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <Palette className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold">5+</p>
-                  <p className="text-sm text-muted-foreground">UI Frameworks</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+      <LogoLoop
+        logos={techLogos}
+        speed={100}
+        direction="left"
+        logoHeight={60}
+        gap={60}
+        hoverSpeed={0}
+        scaleOnHover
+        fadeOut
+        ariaLabel="Technology partners"
+        className="mt-10"
+      /> {/* Add a logo loop at the bottom for visual interest */}
       </div>
     </section>
   )
