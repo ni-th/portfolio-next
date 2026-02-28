@@ -10,7 +10,7 @@ import Footer from '@/components/ui/Footer';
 import ContactSection from '@/components/sections/ContactSection';
 
 // Define section IDs
-export type SectionId = 'home' | 'about' | 'skills' | 'projects';
+export type SectionId = 'home' | 'about' | 'skills' | 'projects' | 'contact';
 
 // Define refs interface
 interface SectionRefs {
