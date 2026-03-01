@@ -24,8 +24,10 @@ const AboutSection = forwardRef<HTMLElement>((props, ref) => {
       
       {/* Content with relative z-index to appear above particles */}
       <div className="relative z-10 container mx-auto px-6">
-        <div className="flex justify-center">
-            <h3 className="text-3xl text-center md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-purple-600" >About Me</h3>
+        <div className="flex justify-center mb-8 sm:mb-12">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-purple-600 px-4 py-2">
+            About Me
+          </h3>
         </div>
         <Tabs defaultValue="about" className="w-full">
           <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-8 bg-background/50 backdrop-blur-sm">
