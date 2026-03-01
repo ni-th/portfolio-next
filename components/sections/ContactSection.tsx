@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Github, Linkedin, Send, Clock, Calendar } from "lu
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import Shuffle from "../ui/shuffle";
+import HeadingGSAP from "../ui/HeadingGSAP";
 
 const ContactSection = forwardRef<HTMLElement>((props, ref) => {
   const [mounted, setMounted] = useState(false);
@@ -85,11 +85,7 @@ ${formData.message}
       <div className="relative z-10 container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
-            <Shuffle
-                text="Contact Me"
-                tag="h2"
-                className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-purple-600"
-            />
+            <HeadingGSAP text="Contact Me" animationType="split" className="text-3xl text-center md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-purple-600" />
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Have a question or want to work together? I'd love to hear from you.
           </p>
