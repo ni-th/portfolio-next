@@ -5,7 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import LogoLoop from "../ui/LogoLoop"
 import { SiIntellijidea, SiJavascript, SiMongodb, SiMysql, SiNextdotjs, SiPostman, SiReact, SiSpring, SiTailwindcss, SiTypescript } from "react-icons/si"
-import { IoLogoJavascript } from "react-icons/io"
 import { FaCss3Alt, FaGitAlt, FaGithub, FaHtml5, FaJava, FaJs, FaPython } from "react-icons/fa"
 import { VscVscode } from "react-icons/vsc"
 import { TopographyBackground } from "../ui/topography"
@@ -101,7 +100,7 @@ const SkillsSection = forwardRef<HTMLElement>((props, ref) => {
         />
       </div>
       <div className="relative container mx-auto px-6 flex flex-col items-center">
-        <HeadingGSAP text="Technical Skills" animationType="split" className="text-3xl text-center md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-purple-600" />
+        <HeadingGSAP text="Technical Skills" animationType="fade" className="text-3xl text-center md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-purple-600" />
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
           A comprehensive overview of my technical expertise and competencies
         </p>
