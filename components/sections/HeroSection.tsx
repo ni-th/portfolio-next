@@ -23,7 +23,7 @@ const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(({ onCtaClick }, r
           <div className="flex justify-center lg:justify-end">
             <Image 
               src="/images/me.png" 
-              alt="Nimantha"
+              alt="Nimantha Thennakoon"
               width={1280} 
               height={1280} 
               className="w-80 sm:w-96 md:w-md h-auto object-cover rounded-2xl"
